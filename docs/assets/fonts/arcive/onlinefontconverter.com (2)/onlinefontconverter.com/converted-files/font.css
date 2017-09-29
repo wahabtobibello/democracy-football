@@ -1,0 +1,12 @@
+@font-face {
+  font-family: 'Futura-CondensedMedium';
+  src: url('Futura-CondensedMedium.eot');
+  src: url('Futura-CondensedMedium.woff2') format('woff2'),
+       url('Futura-CondensedMedium.woff') format('woff'),
+       url('Futura-CondensedMedium.ttf') format('truetype'),
+       url('Futura-CondensedMedium.svg#Futura-CondensedMedium') format('svg'),
+       url('Futura-CondensedMedium.eot?#iefix') format('embedded-opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+

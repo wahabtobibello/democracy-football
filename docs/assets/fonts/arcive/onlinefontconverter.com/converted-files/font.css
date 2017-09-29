@@ -1,0 +1,12 @@
+@font-face {
+  font-family: 'Futura-MediumItalic';
+  src: url('Futura-MediumItalic.eot');
+  src: url('Futura-MediumItalic.woff2') format('woff2'),
+       url('Futura-MediumItalic.woff') format('woff'),
+       url('Futura-MediumItalic.ttf') format('truetype'),
+       url('Futura-MediumItalic.svg#Futura-MediumItalic') format('svg'),
+       url('Futura-MediumItalic.eot?#iefix') format('embedded-opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+

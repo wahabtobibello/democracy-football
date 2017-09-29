@@ -13,261 +13,261 @@
     root.Promise._immediateFn = setAsap;
   }
   var maxchars = 15,
-    defaultColor = "#fff",
-    lucozadeRed = "#f00",
-    acceptedFileTypes = ["image/jpeg", "image/png"],
-    $addPhotoOnly = $('#addPhotoOnly'),
-    $moreOptions = $('#moreOptions'),
-    $saveLink = $('#saveLink'),
-    $saveLinkBtn = $('#saveLinkBtn'),
-    $startOver = $('#startOver'),
-    $addPhoto = $('#add-photo'),
-    $shareBtn = $('#shareBtn'),
-    $fileInput = $("#file-input"),
-    $shareModal = $("#share-modal"),
-    $slider = $("#slider"),
-    $tool = $("#tools span"),
-    $zoomTool = $("#zoom-tool"),
-    $brightnessTool = $("#brightness-tool"),
-    $contrastTool = $("#contrast-tool"),
-    $loading = $('#loading span'),
-    $modalTrailer = $('#modal-trailer'),
-    canvas = new fabric.Canvas('image-canvas', {
+      defaultColor = "#fff",
+      lucozadeRed = "#f00",
+      acceptedFileTypes = ["image/jpeg", "image/png"],
+      $addPhotoOnly = $('#addPhotoOnly'),
+      $moreOptions = $('#moreOptions'),
+      $saveLink = $('#saveLink'),
+      $saveLinkBtn = $('#saveLinkBtn'),
+      $startOver = $('#startOver'),
+      $addPhoto = $('#add-photo'),
+      $shareBtn = $('#shareBtn'),
+      $fileInput = $("#file-input"),
+      $shareModal = $("#share-modal"),
+      $slider = $("#slider"),
+      $tool = $("#tools span"),
+      $zoomTool = $("#zoom-tool"),
+      $brightnessTool = $("#brightness-tool"),
+      $contrastTool = $("#contrast-tool"),
+      $loading = $('#loading span'),
+      $modalTrailer = $('#modal-trailer'),
+      canvas = new fabric.Canvas('image-canvas', {
+    width: 846,
+    height: 846,
+    selection: false,
+    allowTouchScrolling: true,
+    evented: false
+  }),
+      renderClipArtAndTextbox = new Promise(function (resolve, reject) {
+    fabric.loadSVGFromURL('./img/what-lies-within.svg', function (objects, options) {
+      var clipArtObj = fabric.util.groupSVGElements(objects, options);
+      clipArtObj.selectable = false;
+      clipArtObj.evented = false;
+      clipArtObj.hasControls = false;
+      clipArtObj.hasRotatingPoint = false;
+      clipArtObj.hasBorders = false;
+      clipArtObj.setOriginX("center");
+      clipArtObj.setOriginY("center");
+      resolve(clipArtObj);
+    }, function () {});
+  }),
+      getAdjustedScale = function getAdjustedScale(noOfChars) {
+    return (noOfChars * 2 - 6) / 3;
+  },
+      convertCanvasToImage = function convertCanvasToImage(canvas) {
+    var image = new Image();
+    image.src = canvas.toDataURL("image/png");
+    return image;
+  },
+      saveAsCanvas = function saveAsCanvas(canvas) {
+    if (saveAs !== undefined) {
+      canvas.toBlobHD(function (blob) {
+        saveAs(blob, "whatlieswithin.png");
+      }, "image/png");
+    }
+  },
+      editFontSize = function editFontSize(parent, iText, size) {
+    if (size > 0) iText.scaleRatio = size;
+    iText.scaleToHeight(parent.height / size);
+  },
+      addClipArt = function addClipArt(parent, clipArtObj, iText, textScaleRatio) {
+    // clipArtObj.scaleToHeight(parent.height);
+    clipArtObj.scaleToWidth(parent.width);
+    editFontSize(parent, iText, textScaleRatio);
+    parent.add(clipArtObj);
+    parent.add(iText);
+  },
+      renderImage = function renderImage(canvas, img) {
+    var clipArtObj = canvas.getObjects('path-group')[0];
+    var textboxObj = canvas.getObjects('textbox')[0];
+    var inputText = textboxObj.getText();
+    var scaleRatio = textboxObj.scaleRatio;
+    var textObj = new fabric.Text(inputText, {
+      left: -13,
+      top: 275,
+      fontFamily: "MysticItalic",
+      fontStyle: "italic",
+      textAlign: "center",
+      fill: "#fff",
+      originX: "center",
+      originY: "center",
+      evented: false,
+      hasControls: false,
+      hasRotatingPoint: false,
+      hasBorders: false
+    });
+    var imageObj = new fabric.Image(img, {
+      hasRotatingPoint: false,
+      hasControls: false,
+      hasBorders: false,
+      originX: "center",
+      originY: "center",
+      left: canvas.width / 2,
+      top: canvas.height / 2
+    });
+    imageObj.on('mouseup', function (e) {
+      rePositionImage(canvas, this);
+    });
+    var groupObj = new fabric.Group([], {
+      hasControls: false,
+      hasRotatingPoint: false,
+      hasBorders: false,
+      selectable: false,
+      evented: false,
       width: 846,
       height: 846,
-      selection: false,
-      allowTouchScrolling: true,
-      evented: false
-    }),
-    renderClipArtAndTextbox = new Promise(function (resolve, reject) {
-      fabric.loadSVGFromURL('./img/what-lies-within.svg', function (objects, options) {
-        var clipArtObj = fabric.util.groupSVGElements(objects, options);
-        clipArtObj.selectable = false;
-        clipArtObj.evented = false;
-        clipArtObj.hasControls = false;
-        clipArtObj.hasRotatingPoint = false;
-        clipArtObj.hasBorders = false;
-        clipArtObj.setOriginX("center");
-        clipArtObj.setOriginY("center");
-        resolve(clipArtObj);
-      }, function () { });
-    }),
-    getAdjustedScale = function getAdjustedScale(noOfChars) {
-      return (noOfChars * 2 - 6) / 3;
-    },
-    convertCanvasToImage = function convertCanvasToImage(canvas) {
-      var image = new Image();
-      image.src = canvas.toDataURL("image/png");
-      return image;
-    },
-    saveAsCanvas = function saveAsCanvas(canvas) {
-      if (saveAs !== undefined) {
-        canvas.toBlobHD(function (blob) {
-          saveAs(blob, "whatlieswithin.png");
-        }, "image/png");
-      }
-    },
-    editFontSize = function editFontSize(parent, iText, size) {
-      if (size > 0) iText.scaleRatio = size;
-      iText.scaleToHeight(parent.height / size);
-    },
-    addClipArt = function addClipArt(parent, clipArtObj, iText, textScaleRatio) {
-      // clipArtObj.scaleToHeight(parent.height);
-      clipArtObj.scaleToWidth(parent.width);
-      editFontSize(parent, iText, textScaleRatio);
-      parent.add(clipArtObj);
-      parent.add(iText);
-    },
-    renderImage = function renderImage(canvas, img) {
-      var clipArtObj = canvas.getObjects('path-group')[0];
-      var textboxObj = canvas.getObjects('textbox')[0];
-      var inputText = textboxObj.getText();
-      var scaleRatio = textboxObj.scaleRatio;
-      var textObj = new fabric.Text(inputText, {
-        left: -13,
-        top: 275,
+      originX: "center",
+      originY: "center",
+      left: canvas.width / 2,
+      top: canvas.height / 2
+    });
+
+    canvas.clear();
+    canvas.defaultCursor = "default";
+    canvas.add(imageObj);
+    if (imageObj.width <= imageObj.height) {
+      imageObj.scaleToWidth(imageObj.canvas.width);
+    } else if (imageObj.width > imageObj.height) {
+      imageObj.scaleToHeight(imageObj.canvas.height);
+    }
+    imageObj.newScaleX = imageObj.scaleX;
+    imageObj.newScaleY = imageObj.scaleY;
+    imageObj.filters.push(new fabric.Image.filters.Contrast({
+      contrast: 0
+    }));
+    imageObj.filters.push(new fabric.Image.filters.Brightness({
+      brightness: 0
+    }));
+    imageObj.applyFilters(canvas.renderAll.bind(canvas));
+
+    canvas.add(groupObj);
+    addClipArt(groupObj, clipArtObj, textObj, scaleRatio);
+    clipArtObj.setLeft(0);
+    clipArtObj.setTop(0);
+    canvas.sendToBack(imageObj);
+    return new Promise(function (resolve) {
+      resolve(true);
+    });
+  },
+      animateScaleDown = function animateScaleDown(obj, scale) {
+    obj.animate("scaleX", obj.scaleX * scale, {
+      duration: 1000,
+      onChange: canvas.renderAll.bind(canvas),
+      ease: "easeOutSine"
+    }).animate("scaleY", obj.scaleY * scale, {
+      duration: 1000,
+      onChange: canvas.renderAll.bind(canvas),
+      ease: "easeOutSine"
+    }).animate("top", obj.canvas.height / 2 + 150, {
+      duration: 1000,
+      onChange: canvas.renderAll.bind(canvas),
+      ease: "easeOutSine"
+    });
+    return true;
+  },
+      startUp = function startUp(canvas) {
+    canvas.clear();
+    renderClipArtAndTextbox.then(function (clipArtObj) {
+      var textbox = new fabric.Textbox("", {
         fontFamily: "MysticItalic",
         fontStyle: "italic",
         textAlign: "center",
         fill: "#fff",
         originX: "center",
         originY: "center",
-        evented: false,
-        hasControls: false,
-        hasRotatingPoint: false,
-        hasBorders: false
-      });
-      var imageObj = new fabric.Image(img, {
-        hasRotatingPoint: false,
-        hasControls: false,
-        hasBorders: false,
-        originX: "center",
-        originY: "center",
-        left: canvas.width / 2,
-        top: canvas.height / 2
-      });
-      imageObj.on('mouseup', function (e) {
-        rePositionImage(canvas, this);
-      });
-      var groupObj = new fabric.Group([], {
+        cursorColor: "#f00",
+        cursorWidth: 10,
         hasControls: false,
         hasRotatingPoint: false,
         hasBorders: false,
-        selectable: false,
-        evented: false,
-        width: 846,
-        height: 846,
-        originX: "center",
-        originY: "center",
-        left: canvas.width / 2,
-        top: canvas.height / 2
+        lockMovementX: true,
+        lockMovementY: true,
+        width: 600,
+        top: 700,
+        left: 410,
+        scaleRatio: 4
       });
-
-      canvas.clear();
-      canvas.defaultCursor = "default";
-      canvas.add(imageObj);
-      if (imageObj.width <= imageObj.height) {
-        imageObj.scaleToWidth(imageObj.canvas.width);
-      } else if (imageObj.width > imageObj.height) {
-        imageObj.scaleToHeight(imageObj.canvas.height);
-      }
-      imageObj.newScaleX = imageObj.scaleX;
-      imageObj.newScaleY = imageObj.scaleY;
-      imageObj.filters.push(new fabric.Image.filters.Contrast({
-        contrast: 0
-      }));
-      imageObj.filters.push(new fabric.Image.filters.Brightness({
-        brightness: 0
-      }));
-      imageObj.applyFilters(canvas.renderAll.bind(canvas));
-
-      canvas.add(groupObj);
-      addClipArt(groupObj, clipArtObj, textObj, scaleRatio);
-      clipArtObj.setLeft(0);
-      clipArtObj.setTop(0);
-      canvas.sendToBack(imageObj);
-      return new Promise(function (resolve) {
-        resolve(true);
-      });
-    },
-    animateScaleDown = function animateScaleDown(obj, scale) {
-      obj.animate("scaleX", obj.scaleX * scale, {
-        duration: 1000,
-        onChange: canvas.renderAll.bind(canvas),
-        ease: "easeOutSine"
-      }).animate("scaleY", obj.scaleY * scale, {
-        duration: 1000,
-        onChange: canvas.renderAll.bind(canvas),
-        ease: "easeOutSine"
-      }).animate("top", obj.canvas.height / 2 + 150, {
-        duration: 1000,
-        onChange: canvas.renderAll.bind(canvas),
-        ease: "easeOutSine"
-      });
-      return true;
-    },
-    startUp = function startUp(canvas) {
-      canvas.clear();
-      renderClipArtAndTextbox.then(function (clipArtObj) {
-        var textbox = new fabric.Textbox("", {
-          fontFamily: "MysticItalic",
-          fontStyle: "italic",
-          textAlign: "center",
-          fill: "#fff",
-          originX: "center",
-          originY: "center",
-          cursorColor: "#f00",
-          cursorWidth: 10,
-          hasControls: false,
-          hasRotatingPoint: false,
-          hasBorders: false,
-          lockMovementX: true,
-          lockMovementY: true,
-          width: 600,
-          top: 700,
-          left: 410,
-          scaleRatio: 4
-        });
-        textbox.on('mouseup', function (e) {
-          textbox.enterEditing();
-        });
-        textbox.on('changed', function (e) {
-          var textStr = this.getText().toUpperCase();
-          var length = textStr.length;
-          if ($moreOptions.css('display') === "none") {
-            $addPhotoOnly.show();
-            activateButtonOnText($addPhotoOnly, textStr);
-          } else {
-            activateButtonOnText($moreOptions, textStr);
-          }
-          if (length > 9) {
-            editFontSize(canvas, this, getAdjustedScale(length));
-          } else {
-            editFontSize(canvas, this, 4);
-          }
-          this.setText(textStr);
-        });
-        clipArtObj.setTop(423);
-        clipArtObj.setLeft(423);
+      textbox.on('mouseup', function (e) {
         textbox.enterEditing();
-        addClipArt(canvas, clipArtObj, textbox, 4);
-        canvas.renderAll();
       });
-    },
-    filter = function filter(imageObj, index, prop, value) {
-      if (value === undefined) {
-        return imageObj.filters[index][prop];
-      }
-      if (imageObj.filters[index]) {
-        imageObj.filters[index][prop] = value;
-        imageObj.applyFilters(canvas.renderAll.bind(canvas));
-      }
-    },
-    zoomToolHandler = function zoomToolHandler() {
-      var imageObj = canvas.item(0);
-      var value = $slider.slider('value');
-      imageObj.setScaleX(imageObj.newScaleX * value);
-      imageObj.setScaleY(imageObj.newScaleY * value);
-      imageObj.setCoords();
-      rePositionImage(canvas, imageObj);
+      textbox.on('changed', function (e) {
+        var textStr = this.getText().toUpperCase();
+        var length = textStr.length;
+        if ($moreOptions.css('display') === "none") {
+          $addPhotoOnly.show();
+          activateButtonOnText($addPhotoOnly, textStr);
+        } else {
+          activateButtonOnText($moreOptions, textStr);
+        }
+        if (length > 9) {
+          editFontSize(canvas, this, getAdjustedScale(length));
+        } else {
+          editFontSize(canvas, this, 4);
+        }
+        this.setText(textStr);
+      });
+      clipArtObj.setTop(423);
+      clipArtObj.setLeft(423);
+      textbox.enterEditing();
+      addClipArt(canvas, clipArtObj, textbox, 4);
       canvas.renderAll();
-    },
-    contrastToolHandler = function contrastToolHandler() {
-      filter(canvas.item(0), 0, 'contrast', $slider.slider('value'));
-    },
-    brightnessToolHandler = function brightnessToolHandler() {
-      filter(canvas.item(0), 1, 'brightness', $slider.slider('value'));
-    },
-    rePositionImage = function rePositionImage(canvas, imageObj) {
-      var tlX = imageObj.aCoords.tl.x;
-      var tlY = imageObj.aCoords.tl.y;
-      var brX = imageObj.aCoords.br.x;
-      var brY = imageObj.aCoords.br.y;
-      var canvasWidth = canvas.width;
-      var canvasHeight = canvas.height;
-      var currentWidth = imageObj.width * imageObj.scaleX;
-      var currentHeight = imageObj.height * imageObj.scaleY;
-      if (tlX >= 0) {
-        imageObj.setLeft(currentWidth / 2);
-      }
-      if (tlY >= 0) {
-        imageObj.setTop(currentHeight / 2);
-      }
-      if (brX <= canvasWidth) {
-        imageObj.setLeft(canvasWidth - currentWidth / 2);
-      }
-      if (brY <= canvasHeight) {
-        imageObj.setTop(canvasHeight - currentHeight / 2);
-      }
-      imageObj.setCoords();
-    },
-    activateButtonOnText = function activateButtonOnText($el, text) {
-      if (text === "") $el.find('button').attr('disabled', 'true'); else {
-        $el.find('button').removeAttr('disabled');
-      }
-    };
+    });
+  },
+      filter = function filter(imageObj, index, prop, value) {
+    if (value === undefined) {
+      return imageObj.filters[index][prop];
+    }
+    if (imageObj.filters[index]) {
+      imageObj.filters[index][prop] = value;
+      imageObj.applyFilters(canvas.renderAll.bind(canvas));
+    }
+  },
+      zoomToolHandler = function zoomToolHandler() {
+    var imageObj = canvas.item(0);
+    var value = $slider.slider('value');
+    imageObj.setScaleX(imageObj.newScaleX * value);
+    imageObj.setScaleY(imageObj.newScaleY * value);
+    imageObj.setCoords();
+    rePositionImage(canvas, imageObj);
+    canvas.renderAll();
+  },
+      contrastToolHandler = function contrastToolHandler() {
+    filter(canvas.item(0), 0, 'contrast', $slider.slider('value'));
+  },
+      brightnessToolHandler = function brightnessToolHandler() {
+    filter(canvas.item(0), 1, 'brightness', $slider.slider('value'));
+  },
+      rePositionImage = function rePositionImage(canvas, imageObj) {
+    var tlX = imageObj.aCoords.tl.x;
+    var tlY = imageObj.aCoords.tl.y;
+    var brX = imageObj.aCoords.br.x;
+    var brY = imageObj.aCoords.br.y;
+    var canvasWidth = canvas.width;
+    var canvasHeight = canvas.height;
+    var currentWidth = imageObj.width * imageObj.scaleX;
+    var currentHeight = imageObj.height * imageObj.scaleY;
+    if (tlX >= 0) {
+      imageObj.setLeft(currentWidth / 2);
+    }
+    if (tlY >= 0) {
+      imageObj.setTop(currentHeight / 2);
+    }
+    if (brX <= canvasWidth) {
+      imageObj.setLeft(canvasWidth - currentWidth / 2);
+    }
+    if (brY <= canvasHeight) {
+      imageObj.setTop(canvasHeight - currentHeight / 2);
+    }
+    imageObj.setCoords();
+  },
+      activateButtonOnText = function activateButtonOnText($el, text) {
+    if (text === "") $el.find('button').attr('disabled', 'true');else {
+      $el.find('button').removeAttr('disabled');
+    }
+  };
   fabric.Textbox.prototype.insertNewline = function (_super) {
-    return function () { };
+    return function () {};
   }(fabric.Textbox.prototype.insertNewline);
   fabric.Textbox.prototype.initHiddenTextarea = function (_super) {
     return function () {
@@ -361,10 +361,10 @@
   });
   $modalTrailer.iziModal({
     headerColor: '#000',
-    title: 'What Lies Within - Trailer',
+    title: 'Video Sample',
     overlayClose: true,
     iframe: true,
-    iframeURL: 'https://www.youtube.com/embed/LmXfwhWtmL0',
+    iframeURL: 'https://www.youtube.com/embed/V_U6czbDHLE',
     fullscreen: true,
     openFullscreen: false,
     borderBottom: false

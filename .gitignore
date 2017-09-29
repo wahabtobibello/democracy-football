@@ -1,3 +1,5 @@
 node_modules/
 **/*.log
 .idea/
+/docs/assets/fonts/arcive/
+/src/assets/fonts/arcive/
