@@ -13,10 +13,12 @@
   if (!root.Promise._immediateFn) {
     root.Promise._immediateFn = setAsap;
   }
-  const maxchars = 15,
-    defaultColor = "#fff",
-    lucozadeRed = "#f00",
-    acceptedFileTypes = ["image/jpeg", "image/png"],
+  const CONSTANTS = {
+    canvasWidth: 1500,
+    canvasHeight: 740,
+  }
+
+  const acceptedFileTypes = ["image/jpeg", "image/png"],
     $addPhotoOnly = $('#addPhotoOnly'),
     $moreOptions = $('#moreOptions'),
     $saveLink = $('#saveLink'),
@@ -34,25 +36,81 @@
     $loading = $('#loading span'),
     $modalTrailer = $('#modal-trailer'),
     canvas = new fabric.Canvas('image-canvas', {
-      width: 846,
-      height: 846,
+      width: CONSTANTS.canvasWidth,
+      height: CONSTANTS.canvasHeight,
       selection: false,
       allowTouchScrolling: true,
       evented: false,
     }),
-    renderClipArtAndTextbox = new Promise((resolve, reject) => {
-      fabric.loadSVGFromURL('./img/what-lies-within.svg', function (objects, options) {
-        let clipArtObj = fabric.util.groupSVGElements(objects, options);
-        clipArtObj.selectable = false;
-        clipArtObj.evented = false;
-        clipArtObj.hasControls = false;
-        clipArtObj.hasRotatingPoint = false;
-        clipArtObj.hasBorders = false;
-        clipArtObj.setOriginX("center");
-        clipArtObj.setOriginY("center");
-        resolve(clipArtObj);
-      }, () => { });
-    }),
+    formation433 = {
+      lf: {
+        top: 30,
+        left: 400,
+        shirtNumber: 4,
+        name: "Obafemi Awolowo"
+
+      },
+      cf: {
+        top: 0,
+        left: (CONSTANTS.canvasWidth) / 2.28,
+        shirtNumber: 4,
+        name: "Nnamdi Azikwe"
+      },
+      rf: {
+        top: 30,
+        left: CONSTANTS.canvasWidth / 1.14 - 400,
+        shirtNumber: 4,
+        name: "Tafewa Balewa"
+      },
+      lm: {
+        top: (CONSTANTS.canvasHeight) / 3 - 30,
+        left: 400,
+        shirtNumber: 4,
+        name: "Odumegwu Ojukwu"
+      },
+      cm: {
+        top: (CONSTANTS.canvasHeight) / 3,
+        left: (CONSTANTS.canvasWidth) / 2.28,
+        shirtNumber: 4,
+        name: "Murtala Mohammed"
+      },
+      rm: {
+        top: (CONSTANTS.canvasHeight) / 3 - 30,
+        left: CONSTANTS.canvasWidth / 1.14 - 400,
+        shirtNumber: 4,
+        name: "Dora Akunyili"
+      },
+      lb: {
+        top: (CONSTANTS.canvasHeight) / 3 * 2 - 100,
+        left: 200,
+        shirtNumber: 4,
+        name: "Fela Kuti"
+      },
+      lcb: {
+        top: (CONSTANTS.canvasHeight) / 3 * 2 - 80,
+        left: (CONSTANTS.canvasWidth) / 3.42 + 80,
+        shirtNumber: 4,
+        name: "Gani Fawehinmi"
+      },
+      rcb: {
+        top: (CONSTANTS.canvasHeight) / 3 * 2 - 80,
+        left: (CONSTANTS.canvasWidth) / 3.42 * 2 - 80,
+        shirtNumber: 4,
+        name: "Dr. Stella Adadevoh"
+      },
+      rb: {
+        top: (CONSTANTS.canvasHeight) / 3 * 2 - 100,
+        left: CONSTANTS.canvasWidth / 3.42 * 3 - 200,
+        shirtNumber: 4,
+        name: "Ken Saro Wiwa"
+      },
+      gk: {
+        top: (CONSTANTS.canvasHeight) - 220,
+        left: (CONSTANTS.canvasWidth) / 2.28,
+        shirtNumber: 4,
+        name: "Herbert Macauly"
+      },
+    },
     getAdjustedScale = (noOfChars) => {
       return (noOfChars * 2 - 6) / 3;
     },
@@ -108,8 +166,8 @@
         hasBorders: false,
         originX: "center",
         originY: "center",
-        left: canvas.width / 2,
-        top: canvas.height / 2,
+        left: CONSTANTS.canvasWidth / 2,
+        top: CONSTANTS.canvasHeight / 2,
       });
       imageObj.on('mouseup', function (e) {
         rePositionImage(canvas, this);
@@ -124,18 +182,18 @@
         height: 846,
         originX: "center",
         originY: "center",
-        left: canvas.width / 2,
-        top: canvas.height / 2,
+        left: CONSTANTS.canvasWidth / 2,
+        top: CONSTANTS.canvasHeight / 2,
       });
 
       canvas.clear();
       canvas.defaultCursor = "default";
       canvas.add(imageObj);
       if (imageObj.width <= imageObj.height) {
-        imageObj.scaleToWidth(imageObj.canvas.width);
+        imageObj.scaleToWidth(CONSTANTS.canvasWidth);
       }
       else if (imageObj.width > imageObj.height) {
-        imageObj.scaleToHeight(imageObj.canvas.height);
+        imageObj.scaleToHeight(CONSTANTS.canvasHeight);
       }
       imageObj.newScaleX = imageObj.scaleX;
       imageObj.newScaleY = imageObj.scaleY;
@@ -165,7 +223,7 @@
         duration: 1000,
         onChange: canvas.renderAll.bind(canvas),
         ease: "easeOutSine"
-      }).animate("top", obj.canvas.height / 2 + 150, {
+      }).animate("top", obj.CONSTANTS.canvasHeight / 2 + 150, {
         duration: 1000,
         onChange: canvas.renderAll.bind(canvas),
         ease: "easeOutSine"
@@ -173,52 +231,107 @@
       return true;
     },
     startUp = (canvas) => {
-      canvas.clear();
-      renderClipArtAndTextbox.then((clipArtObj) => {
-        let textbox = new fabric.Textbox("", {
-          fontFamily: "MysticItalic",
-          fontStyle: "italic",
-          textAlign: "center",
-          fill: "#fff",
-          originX: "center",
-          originY: "center",
-          cursorColor: "#f00",
-          cursorWidth: 10,
+      const renderPlayer = (oTab, oPic, pos, canvas) => {
+        let groupObj = new fabric.Group([], {
           hasControls: false,
           hasRotatingPoint: false,
           hasBorders: false,
-          lockMovementX: true,
-          lockMovementY: true,
-          width: 600,
-          top: 700,
-          left: 410,
-          scaleRatio: 4,
+          selectable: false,
+          evented: false,
+          width: 1000,
+          height: 800,
+          originX: "center",
+          originY: "center",
         });
-        textbox.on('mouseup', function (e) {
-          textbox.enterEditing();
-        });
-        textbox.on('changed', function (e) {
-          let textStr = this.getText().toUpperCase();
-          let length = textStr.length;
-          if ($moreOptions.css('display') === "none") {
-            $addPhotoOnly.show();
-            activateButtonOnText($addPhotoOnly, textStr);
-          } else {
-            activateButtonOnText($moreOptions, textStr);
-
-          }
-          if (length > 9) {
-            editFontSize(canvas, this, getAdjustedScale(length));
-          } else {
-            editFontSize(canvas, this, 4);
-          }
-          this.setText(textStr);
-        });
-        clipArtObj.setTop(423);
-        clipArtObj.setLeft(423);
-        textbox.enterEditing();
-        addClipArt(canvas, clipArtObj, textbox, 4);
+        groupObj
+          .scale(0.5)
+          .set("left", pos.left)
+          .set("top", pos.top);
+        oTab.set("top", 200);
+        canvas.getObjects("image")[0] && canvas.getObjects("image")[0].sendToBack();
+        groupObj.add(oTab);
+        groupObj.add(oPic);
+        console.log(groupObj);
+        oPic.sendToBack();
+        return groupObj;
+      }
+      canvas.clear();
+      fabric.Image.fromURL('./assets/images/pitch.png', function (oImg) {
+        oImg.scaleToWidth(CONSTANTS.canvasWidth);
+        oImg.set("hasControls", false);
+        oImg.set("hasRotatingPoint", false);
+        oImg.set("hasBorders", false);
+        oImg.set("selectable", false);
+        oImg.set("evented", false);
+        canvas.add(oImg);
+        oImg.sendToBack();
         canvas.renderAll();
+      });
+      fabric.Image.fromURL('./assets/images/button.png', function (oTab) {
+        fabric.Image.fromURL('./assets/images/Awolowo.png', function (oPic) {
+          canvas.add(renderPlayer(oTab, oPic, formation433.lf, canvas));
+          canvas.renderAll();
+        });
+      });
+      fabric.Image.fromURL('./assets/images/button.png', function (oTab) {
+        fabric.Image.fromURL('./assets/images/Azikwe.png', function (oPic) {
+          canvas.add(renderPlayer(oTab, oPic, formation433.cf, canvas));
+          canvas.renderAll();
+        });
+      });
+      fabric.Image.fromURL('./assets/images/button.png', function (oTab) {
+        fabric.Image.fromURL('./assets/images/Balewa.png', function (oPic) {
+          canvas.add(renderPlayer(oTab, oPic, formation433.rf, canvas));
+          canvas.renderAll();
+        });
+      });
+      fabric.Image.fromURL('./assets/images/button.png', function (oTab) {
+        fabric.Image.fromURL('./assets/images/Ojukwu.png', function (oPic) {
+          canvas.add(renderPlayer(oTab, oPic, formation433.lm, canvas));
+          canvas.renderAll();
+        });
+      });
+      fabric.Image.fromURL('./assets/images/button.png', function (oTab) {
+        fabric.Image.fromURL('./assets/images/Murtala.png', function (oPic) {
+          canvas.add(renderPlayer(oTab, oPic, formation433.cm, canvas));
+          canvas.renderAll();
+        });
+      });
+      fabric.Image.fromURL('./assets/images/button.png', function (oTab) {
+        fabric.Image.fromURL('./assets/images/Akunyili.png', function (oPic) {
+          canvas.add(renderPlayer(oTab, oPic, formation433.rm, canvas));
+          canvas.renderAll();
+        });
+      });
+      fabric.Image.fromURL('./assets/images/button.png', function (oTab) {
+        fabric.Image.fromURL('./assets/images/Kuti.png', function (oPic) {
+          canvas.add(renderPlayer(oTab, oPic, formation433.lb, canvas));
+          canvas.renderAll();
+        });
+      });
+      fabric.Image.fromURL('./assets/images/button.png', function (oTab) {
+        fabric.Image.fromURL('./assets/images/Wiwa.png', function (oPic) {
+          canvas.add(renderPlayer(oTab, oPic, formation433.lcb, canvas));
+          canvas.renderAll();
+        });
+      });
+      fabric.Image.fromURL('./assets/images/button.png', function (oTab) {
+        fabric.Image.fromURL('./assets/images/Wiwa.png', function (oPic) {
+          canvas.add(renderPlayer(oTab, oPic, formation433.rcb, canvas));
+          canvas.renderAll();
+        });
+      });
+      fabric.Image.fromURL('./assets/images/button.png', function (oTab) {
+        fabric.Image.fromURL('./assets/images/Wiwa.png', function (oPic) {
+          canvas.add(renderPlayer(oTab, oPic, formation433.rb, canvas));
+          canvas.renderAll();
+        });
+      });
+      fabric.Image.fromURL('./assets/images/button.png', function (oTab) {
+        fabric.Image.fromURL('./assets/images/Macauly.png', function (oPic) {
+          canvas.add(renderPlayer(oTab, oPic, formation433.gk, canvas));
+          canvas.renderAll();
+        });
       });
     },
     filter = (imageObj, index, prop, value) => {
@@ -239,15 +352,19 @@
       rePositionImage(canvas, imageObj);
       canvas.renderAll();
     },
-    contrastToolHandler = () => { filter(canvas.item(0), 0, 'contrast', $slider.slider('value')) },
-    brightnessToolHandler = () => { filter(canvas.item(0), 1, 'brightness', $slider.slider('value')) },
+    contrastToolHandler = () => {
+      filter(canvas.item(0), 0, 'contrast', $slider.slider('value'))
+    },
+    brightnessToolHandler = () => {
+      filter(canvas.item(0), 1, 'brightness', $slider.slider('value'))
+    },
     rePositionImage = (canvas, imageObj) => {
       let tlX = imageObj.aCoords.tl.x;
       let tlY = imageObj.aCoords.tl.y;
       let brX = imageObj.aCoords.br.x;
       let brY = imageObj.aCoords.br.y;
-      let canvasWidth = canvas.width;
-      let canvasHeight = canvas.height;
+      let canvasWidth = CONSTANTS.canvasWidth;
+      let canvasHeight = CONSTANTS.canvasHeight;
       let currentWidth = imageObj.width * imageObj.scaleX;
       let currentHeight = imageObj.height * imageObj.scaleY;
       if (tlX >= 0) {

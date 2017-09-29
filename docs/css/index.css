@@ -12786,8 +12786,8 @@ button {
 }
 
 #view {
-    width: 433px;
-    height: 433px;
+    width: 760px;
+    height: 380px;
     padding: 5px;
     margin: 0 auto;
     position: relative;
@@ -12918,10 +12918,9 @@ body > textarea {
         width: 306.09999999999997px;
     }
 
-    #view,
-    #loading {
+    #view {
         width: 306.09999999999997px;
-        height: 306.09999999999997px;
+        height: 153.05px;
     }
 
     .btn {
@@ -12942,7 +12941,7 @@ body > textarea {
     #view,
     #loading {
         width: 263.79999999999995px;
-        height: 263.79999999999995px;
+        height: 131.9px;
     }
 
     .btn {
