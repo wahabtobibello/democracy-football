@@ -367,10 +367,10 @@
   });
   $modalTrailer.iziModal({
     headerColor: '#000',
-    title: 'What Lies Within - Trailer',
+    title: 'Video Sample',
     overlayClose: true,
     iframe: true,
-    iframeURL: 'https://www.youtube.com/embed/LmXfwhWtmL0',
+    iframeURL: 'https://www.youtube.com/embed/V_U6czbDHLE',
     fullscreen: true,
     openFullscreen: false,
     borderBottom: false

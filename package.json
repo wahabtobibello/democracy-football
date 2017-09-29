@@ -1,7 +1,7 @@
 {
-  "name": "whatlieswithin",
-  "version": "1.0.0",
-  "description": "For the movie: #WhatLiesWithin",
+  "name": "democracy-football",
+  "version": "0.0.1",
+  "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -9,14 +9,16 @@
   "author": "Tobi Bello",
   "license": "MIT",
   "dependencies": {
-    "bootstrap": "^4.0.0-beta",
-    "fabric": "^1.7.16",
+    "bootstrap": "next",
+    "fabric": "^1.7.19",
     "file-saver": "^1.3.3",
     "font-awesome": "^4.7.0",
     "izimodal": "^1.5.0",
     "jquery-ui": "^1.12.1",
     "promise-polyfill": "6.0.2",
-    "setasap": "^2.0.0"
+    "setasap": "^2.0.0",
+    "popper.js": "~1.12.5",
+    "jquery": "~3.2.1"
   },
   "devDependencies": {
     "babel-cli": "^6.24.1",
@@ -35,10 +37,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/tobibello/whatlieswithin.git"
+    "url": "git+https://github.com/tobibello/democracy-football.git"
   },
   "bugs": {
-    "url": "https://github.com/tobibello/whatlieswithin/issues"
+    "url": "https://github.com/tobibello/democracy-football/issues"
   },
-  "homepage": "https://github.com/tobibello/whatlieswithin#readme"
+  "homepage": "https://github.com/tobibello/democracy-football#readme"
 }

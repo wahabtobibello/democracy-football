@@ -1,2 +1,1 @@
-# whatlieswithin
-For the movie: #WhatLiesWithin
+# Democracy Football Squad
