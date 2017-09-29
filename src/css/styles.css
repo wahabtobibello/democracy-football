@@ -9,10 +9,63 @@
 }
 
 @font-face {
-    font-family: 'MysticItalic';
-    src: url('../assets/fonts/MysticItalic.eot'), url('../assets/fonts/MysticItalic.woff2') format('woff2'), url('../assets/fonts/MysticItalic.eot?#iefix') format('embedded-opentype'), url('../assets/fonts/MysticItalic.woff') format('woff'), url('../assets/fonts/MysticItalic.ttf') format('truetype'), url('../assets/fonts/MysticItalic.svg#MysticItalic') format('svg');
+    font-family: 'Futura-Medium';
+    src: url('../assets/fonts/Futura-Medium.eot');
+    src: url('../assets/fonts/Futura-Medium.woff2') format('woff2'),
+    url('../assets/fonts/Futura-Medium.woff') format('woff'),
+    url('../assets/fonts/Futura-Medium.ttf') format('truetype'),
+    url('../assets/fonts/Futura-Medium.svg#Futura-Medium') format('svg'),
+    url('../assets/fonts/Futura-Medium.eot?#iefix') format('embedded-opentype');
     font-weight: normal;
-    font-style: italic;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Futura-MediumItalic';
+    src: url('../assets/fonts/Futura-MediumItalic.eot');
+    src: url('../assets/fonts/Futura-MediumItalic.woff2') format('woff2'),
+    url('../assets/fonts/Futura-MediumItalic.woff') format('woff'),
+    url('../assets/fonts/Futura-MediumItalic.ttf') format('truetype'),
+    url('../assets/fonts/Futura-MediumItalic.svg#Futura-MediumItalic') format('svg'),
+    url('../assets/fonts/Futura-MediumItalic.eot?#iefix') format('embedded-opentype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Futura-Bold';
+    src: url('../assets/fonts/Futura-Bold.eot');
+    src: url('../assets/fonts/Futura-Bold.woff2') format('woff2'),
+    url('../assets/fonts/Futura-Bold.woff') format('woff'),
+    url('../assets/fonts/Futura-Bold.ttf') format('truetype'),
+    url('../assets/fonts/Futura-Bold.svg#Futura-Bold') format('svg'),
+    url('../assets/fonts/Futura-Bold.eot?#iefix') format('embedded-opentype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Futura-CondensedMedium';
+    src: url('../assets/fonts/Futura-CondensedMedium.eot');
+    src: url('../assets/fonts/Futura-CondensedMedium.woff2') format('woff2'),
+    url('../assets/fonts/Futura-CondensedMedium.woff') format('woff'),
+    url('../assets/fonts/Futura-CondensedMedium.ttf') format('truetype'),
+    url('../assets/fonts/Futura-CondensedMedium.svg#Futura-CondensedMedium') format('svg'),
+    url('../assets/fonts/Futura-CondensedMedium.eot?#iefix') format('embedded-opentype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Futura-CondensedExtraBold';
+    src: url('../assets/fonts/Futura-CondensedExtraBold.eot');
+    src: url('../assets/fonts/Futura-CondensedExtraBold.woff2') format('woff2'),
+    url('../assets/fonts/Futura-CondensedExtraBold.woff') format('woff'),
+    url('../assets/fonts/Futura-CondensedExtraBold.ttf') format('truetype'),
+    url('../assets/fonts/Futura-CondensedExtraBold.svg#Futura-CondensedExtraBold') format('svg'),
+    url('../assets/fonts/Futura-CondensedExtraBold.eot?#iefix') format('embedded-opentype');
+    font-weight: normal;
+    font-style: normal;
 }
 
 body,
@@ -34,7 +87,7 @@ button {
     padding-top: 1.4rem;
     font-size: 1rem;
     text-align: center;
-    font-family: "MysticItalic";
+    font-family: "Futura-CondensedExtraBold", sans-serif;
     left: 0;
     right: 0;
     margin: auto;
@@ -63,7 +116,7 @@ button {
 }
 
 .movie-title #within {
-    color: #fa000b;
+    color: #7CD881;
 }
 
 #studio {
@@ -130,7 +183,7 @@ button {
 
 #loading span {
     margin: auto;
-    color: #FA000B;
+    color: #7CD881;
     display: none;
 }
 
