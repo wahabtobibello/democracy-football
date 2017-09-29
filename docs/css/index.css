@@ -12931,9 +12931,9 @@ body > textarea {
         -webkit-transform-origin: top left;
         -ms-transform-origin: top left;
         transform-origin: top left;
-        -webkit-transform: scale(.35, .35);
-        -ms-transform: scale(.35, .35);
-        transform: scale(.35, .35);
+        -webkit-transform: scale(.2, .2);
+        -ms-transform: scale(.2, .2);
+        transform: scale(.2, .2);
     }
 }
 
@@ -12956,9 +12956,9 @@ body > textarea {
         -webkit-transform-origin: top left;
         -ms-transform-origin: top left;
         transform-origin: top left;
-        -webkit-transform: scale(.3, .3);
-        -ms-transform: scale(.3, .3);
-        transform: scale(.3, .3);
+        -webkit-transform: scale(.17, .17);
+        -ms-transform: scale(.17, .17);
+        transform: scale(.17, .17);
     }
 }
 
