@@ -1,0 +1,44 @@
+{
+  "name": "whatlieswithin",
+  "version": "1.0.0",
+  "description": "For the movie: #WhatLiesWithin",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Tobi Bello",
+  "license": "MIT",
+  "dependencies": {
+    "bootstrap": "^4.0.0-beta",
+    "fabric": "^1.7.16",
+    "file-saver": "^1.3.3",
+    "font-awesome": "^4.7.0",
+    "izimodal": "^1.5.0",
+    "jquery-ui": "^1.12.1",
+    "promise-polyfill": "6.0.2",
+    "setasap": "^2.0.0"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.24.1",
+    "babel-preset-env": "^1.6.0",
+    "del": "^3.0.0",
+    "gulp": "^3.9.1",
+    "gulp-babel": "^6.1.2",
+    "gulp-changed": "^3.1.0",
+    "gulp-clean-css": "^3.7.0",
+    "gulp-concat": "^2.6.1",
+    "gulp-imagemin": "^3.3.0",
+    "gulp-rename": "^1.2.2",
+    "gulp-sourcemaps": "^2.6.0",
+    "gulp-uglify": "^3.0.0",
+    "gulp-util": "^3.0.8"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tobibello/whatlieswithin.git"
+  },
+  "bugs": {
+    "url": "https://github.com/tobibello/whatlieswithin/issues"
+  },
+  "homepage": "https://github.com/tobibello/whatlieswithin#readme"
+}
