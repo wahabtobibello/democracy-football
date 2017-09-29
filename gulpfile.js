@@ -15,7 +15,8 @@ const gulp = require('gulp'),
 gulp.task("compileScripts", function () {
   gulp.src('./src/js/_index.js')
     .pipe(babel({
-      presets: ['env']
+      presets: ['env'],
+      plugins:['transform-object-rest-spread']
     }))
     .pipe(rename('index.js'))
     .pipe(gulp.dest('./src/js'));

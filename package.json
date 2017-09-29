@@ -23,6 +23,7 @@
   "devDependencies": {
     "babel-cli": "^6.24.1",
     "babel-preset-env": "^1.6.0",
+    "babel-plugin-transform-object-rest-spread":"~6.26.0",
     "del": "^3.0.0",
     "gulp": "^3.9.1",
     "gulp-babel": "^6.1.2",

@@ -47748,6 +47748,8 @@ var share2social = function share2social($, canvas) {
 };
 "use strict";
 
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
 (function (root, fabric, $) {
   'use strict';
 
@@ -47791,71 +47793,81 @@ var share2social = function share2social($, canvas) {
   }),
       formation433 = {
     lf: {
-      top: 30,
-      left: 400,
+      top: 100,
+      left: 490,
       shirtNumber: 4,
-      name: "Obafemi Awolowo"
-
+      name: "Obafemi Awolowo",
+      path: "./assets/images/Awolowo.png"
     },
     cf: {
-      top: 0,
-      left: CONSTANTS.canvasWidth / 2.28,
+      top: 70,
+      left: CONSTANTS.canvasWidth / 2.28 + 90,
       shirtNumber: 4,
-      name: "Nnamdi Azikwe"
+      name: "Nnamdi Azikwe",
+      path: "./assets/images/Azikwe.png"
     },
     rf: {
-      top: 30,
-      left: CONSTANTS.canvasWidth / 1.14 - 400,
+      top: 100,
+      left: CONSTANTS.canvasWidth / 1.14 - 310,
       shirtNumber: 4,
-      name: "Tafewa Balewa"
+      name: "Tafewa Balewa",
+      path: "./assets/images/Balewa.png"
     },
     lm: {
-      top: CONSTANTS.canvasHeight / 3 - 30,
-      left: 400,
+      top: CONSTANTS.canvasHeight / 3 + 40,
+      left: 490,
       shirtNumber: 4,
-      name: "Odumegwu Ojukwu"
+      name: "Odumegwu Ojukwu",
+      path: "./assets/images/Ojukwu.png"
     },
     cm: {
-      top: CONSTANTS.canvasHeight / 3,
-      left: CONSTANTS.canvasWidth / 2.28,
+      top: CONSTANTS.canvasHeight / 3 + 70,
+      left: CONSTANTS.canvasWidth / 2.28 + 90,
       shirtNumber: 4,
-      name: "Murtala Mohammed"
+      name: "Murtala Mohammed",
+      path: "./assets/images/Murtala.png"
     },
     rm: {
-      top: CONSTANTS.canvasHeight / 3 - 30,
-      left: CONSTANTS.canvasWidth / 1.14 - 400,
+      top: CONSTANTS.canvasHeight / 3 + 40,
+      left: CONSTANTS.canvasWidth / 1.14 - 310,
       shirtNumber: 4,
-      name: "Dora Akunyili"
+      name: "Dora Akunyili",
+      path: "./assets/images/Akunyili.png"
     },
     lb: {
-      top: CONSTANTS.canvasHeight / 3 * 2 - 100,
-      left: 200,
+      top: CONSTANTS.canvasHeight / 3 * 2 - 30,
+      left: 290,
       shirtNumber: 4,
-      name: "Fela Kuti"
+      name: "Fela Kuti",
+      path: "./assets/images/Kuti.png"
     },
     lcb: {
-      top: CONSTANTS.canvasHeight / 3 * 2 - 80,
-      left: CONSTANTS.canvasWidth / 3.42 + 80,
+      top: CONSTANTS.canvasHeight / 3 * 2 - 10,
+      left: CONSTANTS.canvasWidth / 3.42 + 170,
       shirtNumber: 4,
-      name: "Gani Fawehinmi"
+      name: "Gani Fawehinmi",
+      path: "./assets/images/Wiwa.png"
     },
     rcb: {
-      top: CONSTANTS.canvasHeight / 3 * 2 - 80,
-      left: CONSTANTS.canvasWidth / 3.42 * 2 - 80,
+      top: CONSTANTS.canvasHeight / 3 * 2 - 10,
+      left: CONSTANTS.canvasWidth / 3.42 * 2 + 10,
       shirtNumber: 4,
-      name: "Dr. Stella Adadevoh"
+      name: "Dr. Stella Adadevoh",
+      path: "./assets/images/Wiwa.png"
     },
     rb: {
-      top: CONSTANTS.canvasHeight / 3 * 2 - 100,
-      left: CONSTANTS.canvasWidth / 3.42 * 3 - 200,
+      top: CONSTANTS.canvasHeight / 3 * 2 - 30,
+      left: CONSTANTS.canvasWidth / 3.42 * 3 - 110,
       shirtNumber: 4,
-      name: "Ken Saro Wiwa"
+      name: "Ken Saro Wiwa",
+      path: "./assets/images/Wiwa.png"
     },
     gk: {
-      top: CONSTANTS.canvasHeight - 220,
-      left: CONSTANTS.canvasWidth / 2.28,
+      top: CONSTANTS.canvasHeight - 150,
+      left: CONSTANTS.canvasWidth / 2.28 + 90,
       shirtNumber: 4,
-      name: "Herbert Macauly"
+      name: "Herbert Macauly",
+      path: "./assets/images/Macauly.png"
     }
   },
       getAdjustedScale = function getAdjustedScale(noOfChars) {
@@ -47892,7 +47904,7 @@ var share2social = function share2social($, canvas) {
     var textObj = new fabric.Text(inputText, {
       left: -13,
       top: 275,
-      fontFamily: "MysticItalic",
+      fontFamily: "Futura-Medium",
       fontStyle: "italic",
       textAlign: "center",
       fill: "#fff",
@@ -47974,23 +47986,118 @@ var share2social = function share2social($, canvas) {
   },
       startUp = function startUp(canvas) {
     var renderPlayer = function renderPlayer(oTab, oPic, pos, canvas) {
-      var groupObj = new fabric.Group([], {
+      var oShirtNo = new fabric.Text("" + pos.shirtNumber, {
+        fontFamily: "Futura-Medium",
+        top: 123,
+        left: -130,
+        originX: "center",
+        originY: "center",
+        propName: "shirtNumber"
+      });
+      var oPlayerName = new fabric.Text(pos.name, {
+        fontFamily: "Futura-Medium",
+        top: 123,
+        left: 25,
+        fontSize: 26,
+        fill: "white",
+        originX: "center",
+        originY: "center",
+        propName: "name"
+      });
+      var groupObj = new fabric.Group([], _extends({
         hasControls: false,
         hasRotatingPoint: false,
         hasBorders: false,
         selectable: false,
-        evented: false,
-        width: 1000,
-        height: 800,
+        // evented: false,
+        width: 300,
+        height: 300,
         originX: "center",
         originY: "center"
+      }, pos));
+      canvas.on("mouse:down", function (e) {
+        if (e.target === null) {
+          return;
+        }
+        if (groupObj !== e.target) {
+          // oTab.set("stroke", null);
+          // oPic.set("stroke", null);
+          return;
+        }
+        if (canvas.isPlayerSelected) {
+          if (canvas.selectedGroup === e.target) {
+            canvas.isPlayerSelected = false;
+            oTab.set("stroke", null);
+            var osPic = canvas.selectedGroup._objects.find(function (ele) {
+              return ele.propName === "picture";
+            });
+            osPic.set("stroke", null);
+            return;
+          }
+          var previousSelectedGroup = canvas.selectedGroup;
+          var newSelectedGroup = e.target;
+
+          var opsShirtNumber = previousSelectedGroup._objects.find(function (ele) {
+            return ele.propName === "shirtNumber";
+          });
+          var opsName = previousSelectedGroup._objects.find(function (ele) {
+            return ele.propName === "name";
+          });
+          var opsPic = previousSelectedGroup._objects.find(function (ele) {
+            return ele.propName === "picture";
+          });
+          var opsTab = previousSelectedGroup._objects.find(function (ele) {
+            return ele.propName === "tab";
+          });
+
+          var onsShirtNumber = newSelectedGroup._objects.find(function (ele) {
+            return ele.propName === "shirtNumber";
+          });
+          var onsName = newSelectedGroup._objects.find(function (ele) {
+            return ele.propName === "name";
+          });
+          var onsPic = newSelectedGroup._objects.find(function (ele) {
+            return ele.propName === "picture";
+          });
+          var onsTab = newSelectedGroup._objects.find(function (ele) {
+            return ele.propName === "tab";
+          });
+
+          canvas.isPlayerSelected = false;
+          opsPic.set("stroke", null);
+          onsPic.set("stroke", null);
+          opsTab.set("stroke", null);
+          onsTab.set("stroke", null);
+
+          previousSelectedGroup.remove(opsShirtNumber, opsName, opsPic);
+          newSelectedGroup.remove(onsShirtNumber, onsName, onsPic);
+          previousSelectedGroup.add(onsShirtNumber, onsName, onsPic);
+          newSelectedGroup.add(opsShirtNumber, opsName, opsPic);
+
+          onsPic.sendToBack();
+          opsPic.sendToBack();
+
+          canvas.renderAll();
+        } else {
+          canvas.isPlayerSelected = true;
+          oTab.set("stroke", "white");
+          canvas.selectedGroup = e.target;
+          var _osPic = canvas.selectedGroup._objects.find(function (ele) {
+            return ele.propName === "picture";
+          });
+          _osPic.set("stroke", "white");
+        }
+        console.log(canvas.isPlayerSelected);
       });
       groupObj.scale(0.5).set("left", pos.left).set("top", pos.top);
-      oTab.set("top", 200);
+      oTab.set("top", 120).set("strokeWidth", 10).set("originX", "center").set("originY", "center").set("propName", "tab");
+
+      oPic.set("strokeWidth", 10).set("originX", "center").set("originY", "center").set("propName", "picture");
       canvas.getObjects("image")[0] && canvas.getObjects("image")[0].sendToBack();
       groupObj.add(oTab);
       groupObj.add(oPic);
-      console.log(groupObj);
+      groupObj.add(oPlayerName);
+      groupObj.add(oShirtNo);
       oPic.sendToBack();
       return groupObj;
     };
@@ -48007,67 +48114,67 @@ var share2social = function share2social($, canvas) {
       canvas.renderAll();
     });
     fabric.Image.fromURL('./assets/images/button.png', function (oTab) {
-      fabric.Image.fromURL('./assets/images/Awolowo.png', function (oPic) {
+      fabric.Image.fromURL(formation433.lf.path, function (oPic) {
         canvas.add(renderPlayer(oTab, oPic, formation433.lf, canvas));
         canvas.renderAll();
       });
     });
     fabric.Image.fromURL('./assets/images/button.png', function (oTab) {
-      fabric.Image.fromURL('./assets/images/Azikwe.png', function (oPic) {
+      fabric.Image.fromURL(formation433.cf.path, function (oPic) {
         canvas.add(renderPlayer(oTab, oPic, formation433.cf, canvas));
         canvas.renderAll();
       });
     });
     fabric.Image.fromURL('./assets/images/button.png', function (oTab) {
-      fabric.Image.fromURL('./assets/images/Balewa.png', function (oPic) {
+      fabric.Image.fromURL(formation433.rf.path, function (oPic) {
         canvas.add(renderPlayer(oTab, oPic, formation433.rf, canvas));
         canvas.renderAll();
       });
     });
     fabric.Image.fromURL('./assets/images/button.png', function (oTab) {
-      fabric.Image.fromURL('./assets/images/Ojukwu.png', function (oPic) {
+      fabric.Image.fromURL(formation433.lm.path, function (oPic) {
         canvas.add(renderPlayer(oTab, oPic, formation433.lm, canvas));
         canvas.renderAll();
       });
     });
     fabric.Image.fromURL('./assets/images/button.png', function (oTab) {
-      fabric.Image.fromURL('./assets/images/Murtala.png', function (oPic) {
+      fabric.Image.fromURL(formation433.cm.path, function (oPic) {
         canvas.add(renderPlayer(oTab, oPic, formation433.cm, canvas));
         canvas.renderAll();
       });
     });
     fabric.Image.fromURL('./assets/images/button.png', function (oTab) {
-      fabric.Image.fromURL('./assets/images/Akunyili.png', function (oPic) {
+      fabric.Image.fromURL(formation433.rm.path, function (oPic) {
         canvas.add(renderPlayer(oTab, oPic, formation433.rm, canvas));
         canvas.renderAll();
       });
     });
     fabric.Image.fromURL('./assets/images/button.png', function (oTab) {
-      fabric.Image.fromURL('./assets/images/Kuti.png', function (oPic) {
+      fabric.Image.fromURL(formation433.lb.path, function (oPic) {
         canvas.add(renderPlayer(oTab, oPic, formation433.lb, canvas));
         canvas.renderAll();
       });
     });
     fabric.Image.fromURL('./assets/images/button.png', function (oTab) {
-      fabric.Image.fromURL('./assets/images/Wiwa.png', function (oPic) {
+      fabric.Image.fromURL(formation433.lcb.path, function (oPic) {
         canvas.add(renderPlayer(oTab, oPic, formation433.lcb, canvas));
         canvas.renderAll();
       });
     });
     fabric.Image.fromURL('./assets/images/button.png', function (oTab) {
-      fabric.Image.fromURL('./assets/images/Wiwa.png', function (oPic) {
+      fabric.Image.fromURL(formation433.rcb.path, function (oPic) {
         canvas.add(renderPlayer(oTab, oPic, formation433.rcb, canvas));
         canvas.renderAll();
       });
     });
     fabric.Image.fromURL('./assets/images/button.png', function (oTab) {
-      fabric.Image.fromURL('./assets/images/Wiwa.png', function (oPic) {
+      fabric.Image.fromURL(formation433.rb.path, function (oPic) {
         canvas.add(renderPlayer(oTab, oPic, formation433.rb, canvas));
         canvas.renderAll();
       });
     });
     fabric.Image.fromURL('./assets/images/button.png', function (oTab) {
-      fabric.Image.fromURL('./assets/images/Macauly.png', function (oPic) {
+      fabric.Image.fromURL(formation433.gk.path, function (oPic) {
         canvas.add(renderPlayer(oTab, oPic, formation433.gk, canvas));
         canvas.renderAll();
       });
