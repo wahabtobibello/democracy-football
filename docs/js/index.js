@@ -47881,7 +47881,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
       saveAsCanvas = function saveAsCanvas(canvas) {
     if (saveAs !== undefined) {
       canvas.toBlobHD(function (blob) {
-        saveAs(blob, "whatlieswithin.png");
+        saveAs(blob, "teamSuperHero.png");
       }, "image/png");
     }
   },
@@ -48087,7 +48087,6 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
           });
           _osPic.set("stroke", "white");
         }
-        console.log(canvas.isPlayerSelected);
       });
       groupObj.scale(0.5).set("left", pos.left).set("top", pos.top);
       oTab.set("top", 120).set("strokeWidth", 10).set("originX", "center").set("originY", "center").set("propName", "tab");

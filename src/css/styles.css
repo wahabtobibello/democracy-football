@@ -274,8 +274,8 @@ body > textarea {
     }
 
     #view {
-        width: 306.09999999999997px;
-        height: 153.05px;
+        width: 340px;
+        height: 310px;
     }
 
     .btn {
@@ -286,17 +286,17 @@ body > textarea {
         -webkit-transform-origin: top left;
         -ms-transform-origin: top left;
         transform-origin: top left;
-        -webkit-transform: scale(.2, .2);
-        -ms-transform: scale(.2, .2);
-        transform: scale(.2, .2);
+        -webkit-transform: scale(.32, .32) translateX(-235px);
+        -ms-transform: scale(.32, .32) translateX(-235px);
+        transform: scale(.32, .32) translateX(-235px);
     }
 }
 
 @media (max-width: 340px) {
     #view,
     #loading {
-        width: 263.79999999999995px;
-        height: 131.9px;
+        width: 292px;
+        height: 250px;
     }
 
     .btn {
@@ -311,9 +311,9 @@ body > textarea {
         -webkit-transform-origin: top left;
         -ms-transform-origin: top left;
         transform-origin: top left;
-        -webkit-transform: scale(.17, .17);
-        -ms-transform: scale(.17, .17);
-        transform: scale(.17, .17);
+        -webkit-transform: scale(.27, .27) translateX(-235px);
+        -ms-transform: scale(.27, .27) translateX(-235px);
+        transform: scale(.27, .27) translateX(-235px);
     }
 }
 

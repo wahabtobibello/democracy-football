@@ -134,7 +134,7 @@
         canvas.toBlobHD(function (blob) {
           saveAs(
             blob
-            , "whatlieswithin.png"
+            , "teamSuperHero.png"
           );
         }, "image/png");
       }
