@@ -47763,8 +47763,8 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
     root.Promise._immediateFn = setAsap;
   }
   var CONSTANTS = {
-    canvasWidth: 1500,
-    canvasHeight: 740
+    canvasWidth: 900,
+    canvasHeight: 954
   };
 
   var acceptedFileTypes = ["image/jpeg", "image/png"],
@@ -47793,81 +47793,109 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
   }),
       formation433 = {
     lf: {
-      top: 100,
-      left: 490,
-      shirtNumber: 4,
+      top: 120,
+      left: 240,
+      shirtNumber: 11,
       name: "Obafemi Awolowo",
       path: "./assets/images/Awolowo.png"
     },
     cf: {
-      top: 70,
-      left: CONSTANTS.canvasWidth / 2.28 + 90,
-      shirtNumber: 4,
+      top: 75,
+      left: CONSTANTS.canvasWidth / 2,
+      shirtNumber: 9,
       name: "Nnamdi Azikwe",
       path: "./assets/images/Azikwe.png"
     },
     rf: {
-      top: 100,
-      left: CONSTANTS.canvasWidth / 1.14 - 310,
-      shirtNumber: 4,
+      top: 120,
+      left: CONSTANTS.canvasWidth - 240,
+      shirtNumber: 7,
       name: "Tafewa Balewa",
       path: "./assets/images/Balewa.png"
     },
     lm: {
-      top: CONSTANTS.canvasHeight / 3 + 40,
-      left: 490,
+      top: CONSTANTS.canvasHeight / 4 + 50,
+      left: 290,
       shirtNumber: 4,
       name: "Odumegwu Ojukwu",
       path: "./assets/images/Ojukwu.png"
     },
     cm: {
-      top: CONSTANTS.canvasHeight / 3 + 70,
-      left: CONSTANTS.canvasWidth / 2.28 + 90,
+      top: CONSTANTS.canvasHeight / 4 + 150,
+      left: CONSTANTS.canvasWidth / 2,
       shirtNumber: 4,
       name: "Murtala Mohammed",
       path: "./assets/images/Murtala.png"
     },
     rm: {
-      top: CONSTANTS.canvasHeight / 3 + 40,
-      left: CONSTANTS.canvasWidth / 1.14 - 310,
+      top: CONSTANTS.canvasHeight / 4 + 50,
+      left: CONSTANTS.canvasWidth - 290,
       shirtNumber: 4,
       name: "Dora Akunyili",
       path: "./assets/images/Akunyili.png"
     },
     lb: {
-      top: CONSTANTS.canvasHeight / 3 * 2 - 30,
-      left: 290,
-      shirtNumber: 4,
+      top: CONSTANTS.canvasHeight / 3 + 150,
+      left: 180,
+      shirtNumber: 2,
       name: "Fela Kuti",
       path: "./assets/images/Kuti.png"
     },
     lcb: {
-      top: CONSTANTS.canvasHeight / 3 * 2 - 10,
-      left: CONSTANTS.canvasWidth / 3.42 + 170,
+      top: CONSTANTS.canvasHeight / 3 + 255,
+      left: CONSTANTS.canvasWidth / 3 + 50,
       shirtNumber: 4,
       name: "Gani Fawehinmi",
-      path: "./assets/images/Wiwa.png"
+      path: "./assets/images/Fawehinmi.png"
     },
     rcb: {
-      top: CONSTANTS.canvasHeight / 3 * 2 - 10,
-      left: CONSTANTS.canvasWidth / 3.42 * 2 + 10,
-      shirtNumber: 4,
+      top: CONSTANTS.canvasHeight / 3 + 255,
+      left: CONSTANTS.canvasWidth / 3 * 2 - 50,
+      shirtNumber: 5,
       name: "Dr. Stella Adadevoh",
-      path: "./assets/images/Wiwa.png"
+      path: "./assets/images/Adadevoh.png"
     },
     rb: {
-      top: CONSTANTS.canvasHeight / 3 * 2 - 30,
-      left: CONSTANTS.canvasWidth / 3.42 * 3 - 110,
-      shirtNumber: 4,
+      top: CONSTANTS.canvasHeight / 3 + 150,
+      left: CONSTANTS.canvasWidth - 180,
+      shirtNumber: 3,
       name: "Ken Saro Wiwa",
       path: "./assets/images/Wiwa.png"
     },
     gk: {
-      top: CONSTANTS.canvasHeight - 150,
-      left: CONSTANTS.canvasWidth / 2.28 + 90,
-      shirtNumber: 4,
+      top: CONSTANTS.canvasHeight - 220,
+      left: CONSTANTS.canvasWidth / 2 + 10,
+      shirtNumber: 1,
       name: "Herbert Macauly",
       path: "./assets/images/Macauly.png"
+    },
+    sub1: {
+      top: CONSTANTS.canvasHeight - 90,
+      left: 130,
+      shirtNumber: 14,
+      name: "Chinua Achebe",
+      path: "./assets/images/Achebe.png"
+    },
+    sub2: {
+      top: CONSTANTS.canvasHeight - 90,
+      left: CONSTANTS.canvasWidth / 3 + 45,
+      shirtNumber: 23,
+      name: "MKO Abiola",
+      path: "./assets/images/Abiola.png"
+    },
+    sub3: {
+      top: CONSTANTS.canvasHeight - 90,
+      left: CONSTANTS.canvasWidth / 3 * 2 - 45,
+      shirtNumber: 15,
+      name: "Abu Ali",
+      path: "./assets/images/Ali.png"
+    },
+    sub4: {
+      top: CONSTANTS.canvasHeight - 90,
+      left: CONSTANTS.canvasWidth - 130,
+      shirtNumber: 20,
+      name: "Ahmadu Bello",
+      path: "./assets/images/Bello.png"
     }
   },
       getAdjustedScale = function getAdjustedScale(noOfChars) {
@@ -48112,6 +48140,18 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
       oImg.sendToBack();
       canvas.renderAll();
     });
+    fabric.Image.fromURL('./assets/images/substituteTab.png', function (oImg) {
+      oImg.scaleToWidth(CONSTANTS.canvasWidth);
+      oImg.set("hasControls", false);
+      oImg.set("hasRotatingPoint", false);
+      oImg.set("hasBorders", false);
+      oImg.set("selectable", false);
+      oImg.set("evented", false);
+      oImg.set("top", CONSTANTS.canvasWidth - 70);
+      canvas.add(oImg);
+      oImg.sendToBack();
+      canvas.renderAll();
+    });
     fabric.Image.fromURL('./assets/images/button.png', function (oTab) {
       fabric.Image.fromURL(formation433.lf.path, function (oPic) {
         canvas.add(renderPlayer(oTab, oPic, formation433.lf, canvas));
@@ -48175,6 +48215,30 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
     fabric.Image.fromURL('./assets/images/button.png', function (oTab) {
       fabric.Image.fromURL(formation433.gk.path, function (oPic) {
         canvas.add(renderPlayer(oTab, oPic, formation433.gk, canvas));
+        canvas.renderAll();
+      });
+    });
+    fabric.Image.fromURL('./assets/images/button.png', function (oTab) {
+      fabric.Image.fromURL(formation433.sub1.path, function (oPic) {
+        canvas.add(renderPlayer(oTab, oPic, formation433.sub1, canvas));
+        canvas.renderAll();
+      });
+    });
+    fabric.Image.fromURL('./assets/images/button.png', function (oTab) {
+      fabric.Image.fromURL(formation433.sub2.path, function (oPic) {
+        canvas.add(renderPlayer(oTab, oPic, formation433.sub2, canvas));
+        canvas.renderAll();
+      });
+    });
+    fabric.Image.fromURL('./assets/images/button.png', function (oTab) {
+      fabric.Image.fromURL(formation433.sub3.path, function (oPic) {
+        canvas.add(renderPlayer(oTab, oPic, formation433.sub3, canvas));
+        canvas.renderAll();
+      });
+    });
+    fabric.Image.fromURL('./assets/images/button.png', function (oTab) {
+      fabric.Image.fromURL(formation433.sub4.path, function (oPic) {
+        canvas.add(renderPlayer(oTab, oPic, formation433.sub4, canvas));
         canvas.renderAll();
       });
     });
@@ -48308,7 +48372,6 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
   });
   $startOver.click(function (e) {
     startUp(canvas);
-    $moreOptions.hide();
   });
   $(document).on("click", "#add-photo", function (e) {
     $('#file-input').click();

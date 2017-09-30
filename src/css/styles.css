@@ -70,7 +70,7 @@
 
 body,
 button {
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-family: 'Futura-Medium', sans-serif;
 }
 
 .header {
@@ -141,8 +141,8 @@ button {
 }
 
 #view {
-    width: 760px;
-    height: 380px;
+    width: 450px;
+    height: 478px;
     padding: 5px;
     margin: 0 auto;
     position: relative;
@@ -274,8 +274,8 @@ body > textarea {
     }
 
     #view {
-        width: 340px;
-        height: 310px;
+        width: 350px;
+        height: 371px;
     }
 
     .btn {
@@ -286,17 +286,17 @@ body > textarea {
         -webkit-transform-origin: top left;
         -ms-transform-origin: top left;
         transform-origin: top left;
-        -webkit-transform: scale(.32, .32) translateX(-235px);
-        -ms-transform: scale(.32, .32) translateX(-235px);
-        transform: scale(.32, .32) translateX(-235px);
+        -webkit-transform: scale(.38, .38);
+        -ms-transform: scale(.38, .38);
+        transform: scale(.38, .38);
     }
 }
 
 @media (max-width: 340px) {
     #view,
     #loading {
-        width: 292px;
-        height: 250px;
+        width: 310px;
+        height: 329px;
     }
 
     .btn {
@@ -311,9 +311,9 @@ body > textarea {
         -webkit-transform-origin: top left;
         -ms-transform-origin: top left;
         transform-origin: top left;
-        -webkit-transform: scale(.27, .27) translateX(-235px);
-        -ms-transform: scale(.27, .27) translateX(-235px);
-        transform: scale(.27, .27) translateX(-235px);
+        -webkit-transform: scale(.335, .335);
+        -ms-transform: scale(.335, .335);
+        transform: scale(.335, .335);
     }
 }
 
