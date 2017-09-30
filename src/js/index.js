@@ -122,28 +122,28 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
       path: "./assets/images/Macauly.png"
     },
     sub1: {
-      top: CONSTANTS.canvasHeight - 100,
+      top: CONSTANTS.canvasHeight - 90,
       left: 130,
       shirtNumber: 14,
       name: "Chinua Achebe",
       path: "./assets/images/Achebe.png"
     },
     sub2: {
-      top: CONSTANTS.canvasHeight - 100,
+      top: CONSTANTS.canvasHeight - 90,
       left: CONSTANTS.canvasWidth / 3 + 45,
       shirtNumber: 23,
       name: "MKO Abiola",
       path: "./assets/images/Abiola.png"
     },
     sub3: {
-      top: CONSTANTS.canvasHeight - 100,
+      top: CONSTANTS.canvasHeight - 90,
       left: CONSTANTS.canvasWidth / 3 * 2 - 45,
       shirtNumber: 31,
       name: "Murtala Mohammed",
       path: "./assets/images/Murtala.png"
     },
     sub4: {
-      top: CONSTANTS.canvasHeight - 100,
+      top: CONSTANTS.canvasHeight - 90,
       left: CONSTANTS.canvasWidth - 130,
       shirtNumber: 20,
       name: "Ahmadu Bello",
@@ -408,7 +408,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
       oImg.set("hasBorders", false);
       oImg.set("selectable", false);
       oImg.set("evented", false);
-      oImg.set("top", CONSTANTS.canvasWidth - 50);
+      oImg.set("top", CONSTANTS.canvasWidth - 30);
       canvas.add(oImg);
       oImg.sendToBack();
       canvas.renderAll();
