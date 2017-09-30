@@ -47816,21 +47816,21 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
     lm: {
       top: CONSTANTS.canvasHeight / 4 + 50,
       left: 290,
-      shirtNumber: 4,
+      shirtNumber: 6,
       name: "Odumegwu Ojukwu",
       path: "./assets/images/Ojukwu.png"
     },
     cm: {
       top: CONSTANTS.canvasHeight / 4 + 150,
       left: CONSTANTS.canvasWidth / 2,
-      shirtNumber: 4,
+      shirtNumber: 31,
       name: "Murtala Mohammed",
       path: "./assets/images/Murtala.png"
     },
     rm: {
       top: CONSTANTS.canvasHeight / 4 + 50,
       left: CONSTANTS.canvasWidth - 290,
-      shirtNumber: 4,
+      shirtNumber: 22,
       name: "Dora Akunyili",
       path: "./assets/images/Akunyili.png"
     },
@@ -48065,9 +48065,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
           var previousSelectedGroup = canvas.selectedGroup;
           var newSelectedGroup = e.target;
 
-          var opsShirtNumber = previousSelectedGroup._objects.find(function (ele) {
-            return ele.propName === "shirtNumber";
-          });
+          // let opsShirtNumber = previousSelectedGroup._objects.find((ele) => ele.propName === "shirtNumber");
           var opsName = previousSelectedGroup._objects.find(function (ele) {
             return ele.propName === "name";
           });
@@ -48078,9 +48076,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
             return ele.propName === "tab";
           });
 
-          var onsShirtNumber = newSelectedGroup._objects.find(function (ele) {
-            return ele.propName === "shirtNumber";
-          });
+          // let onsShirtNumber = newSelectedGroup._objects.find((ele) => ele.propName === "shirtNumber");
           var onsName = newSelectedGroup._objects.find(function (ele) {
             return ele.propName === "name";
           });
@@ -48097,10 +48093,10 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
           opsTab.set("stroke", null);
           onsTab.set("stroke", null);
 
-          previousSelectedGroup.remove(opsShirtNumber, opsName, opsPic);
-          newSelectedGroup.remove(onsShirtNumber, onsName, onsPic);
-          previousSelectedGroup.add(onsShirtNumber, onsName, onsPic);
-          newSelectedGroup.add(opsShirtNumber, opsName, opsPic);
+          previousSelectedGroup.remove( /*opsShirtNumber,*/opsName, opsPic);
+          newSelectedGroup.remove( /*onsShirtNumber,*/onsName, onsPic);
+          previousSelectedGroup.add( /*onsShirtNumber,*/onsName, onsPic);
+          newSelectedGroup.add( /*opsShirtNumber,*/opsName, opsPic);
 
           onsPic.sendToBack();
           opsPic.sendToBack();
