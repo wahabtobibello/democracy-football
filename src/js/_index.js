@@ -305,19 +305,19 @@
             return;
           }
           if (groupObj !== e.target) {
-            let otPic = e.target._objects.find((ele) => ele.propName === "picture");
-            let otTab = e.target._objects.find((ele) => ele.propName === "tab");
-            otTab.set("stroke", null);
-            otPic.set("stroke", null);
+            // let otPic = e.target._objects.find((ele) => ele.propName === "picture");
+            // let otTab = e.target._objects.find((ele) => ele.propName === "tab");
+            oTab.set("stroke", null);
+            // oPic.set("stroke", null);
             return;
           }
           if (canvas.isPlayerSelected) {
             if (canvas.selectedGroup === e.target) {
               canvas.isPlayerSelected = false;
-              let osPic = canvas.selectedGroup._objects.find((ele) => ele.propName === "picture");
-              let osTab = canvas.selectedGroup._objects.find((ele) => ele.propName === "tab");
-              osTab.set("stroke", null);
-              osPic.set("stroke", null);
+              // let osPic = canvas.selectedGroup._objects.find((ele) => ele.propName === "picture");
+              // let osTab = canvas.selectedGroup._objects.find((ele) => ele.propName === "tab");
+              oTab.set("stroke", null);
+              // oPic.set("stroke", null);
               return;
             }
             let previousSelectedGroup = canvas.selectedGroup;
@@ -334,10 +334,8 @@
             let onsTab = newSelectedGroup._objects.find((ele) => ele.propName === "tab");
 
             canvas.isPlayerSelected = false;
-            opsPic.set("stroke", null);
-            onsPic.set("stroke", null);
-            opsTab.set("stroke", null);
-            onsTab.set("stroke", null);
+            // opsPic.set("stroke", null);
+            // opsTab.set("stroke", null);
 
             previousSelectedGroup.remove(/*opsShirtNumber,*/ opsName, opsPic);
             newSelectedGroup.remove(/*onsShirtNumber,*/ onsName, onsPic);
@@ -351,32 +349,36 @@
           } else {
             canvas.isPlayerSelected = true;
             canvas.selectedGroup = e.target;
-            let otPic = e.target._objects.find((ele) => ele.propName === "picture");
-            let otTab = e.target._objects.find((ele) => ele.propName === "tab");
-            otTab.set("stroke", "white");
-            otPic.set("stroke", "white");
+            // let otPic = canvas.selectedGroup._objects.find((ele) => ele.propName === "picture");
+            // let otTab = canvas.selectedGroup._objects.find((ele) => ele.propName === "tab");
+            oTab.set("stroke", "white");
+            // oPic.set("stroke", "white");
           }
+          console.log(canvas.isPlayerSelected);
         })
         groupObj.scale(0.5)
           .set("left", pos.left)
-          .set("top", pos.top);
+          .set("top", pos.top)
+          .set("strokeWidth", 10)
+          .set("stroke", "white");
 
         oTab.set("top", 120)
-          .set("strokeWidth", 10)
+          .set("strokeWidth", 12)
+          // .set("stroke", "white")
           .set("originX", "center")
           .set("originY", "center")
           .set("propName", "tab");
 
-        oPic.set("strokeWidth", 10)
+        oPic
+          // .set("strokeWidth", 10)
           .set("originX", "center")
           .set("originY", "center")
           .set("propName", "picture");
         canvas.getObjects("image")[0] && canvas.getObjects("image")[0].sendToBack();
-        groupObj.add(oTab);
         groupObj.add(oPic);
+        groupObj.add(oTab);
         groupObj.add(oPlayerName);
         groupObj.add(oShirtNo);
-        oPic.sendToBack();
         return groupObj;
       }
       canvas.clear();
