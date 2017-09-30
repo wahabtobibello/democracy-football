@@ -12649,8 +12649,8 @@ html.iziModal-isAttached{
 
 .lucozade-red {
     color: #fff;
-    background-color: #f00;
-    border-color: #f00;
+    background: linear-gradient(#479b30, #3C8129);
+    border-color: #fff;
 }
 
 @font-face {
@@ -12787,7 +12787,7 @@ button {
 
 #view {
     width: 450px;
-    height: 478px;
+    height: 500px;
     padding: 5px;
     margin: 0 auto;
     position: relative;
@@ -12834,7 +12834,7 @@ button {
 
 #controls {
     text-align: center;
-    margin: 10px auto 0;
+    margin: 1.5em auto 0;
     padding: 0 10px;
     -webkit-transition: .5s;
     transition: .5s;
@@ -12915,12 +12915,12 @@ body > textarea {
 
 @media (max-width: 500px) and (min-width: 341px) {
     #controls {
-        width: 306.09999999999997px;
+        width: 336px;
     }
 
     #view {
         width: 350px;
-        height: 371px;
+        height: 390px;
     }
 
     .btn {
@@ -12941,7 +12941,7 @@ body > textarea {
     #view,
     #loading {
         width: 310px;
-        height: 329px;
+        height: 344.44px;
     }
 
     .btn {
@@ -12949,7 +12949,7 @@ body > textarea {
     }
 
     #controls {
-        width: 263.79999999999995px;
+        width: 328px;
     }
 
     #view .canvas-container {
@@ -13050,7 +13050,7 @@ body > textarea {
     font-size: 32px;
     line-height: 32px;
     letter-spacing: 2px;
-    color: #f00;
+    color: #3C8129;
     text-transform: uppercase;
     padding: 40px 40px 20px;
     margin: 0;
@@ -13073,7 +13073,7 @@ body > textarea {
 }
 
 .gallery ul li .over p a:hover {
-    color: #f00
+    color: #3C8129
 }
 
 .gallery ul li .video {
@@ -13128,5 +13128,5 @@ body > textarea {
 }
 
 .btn {
-    border-radius: 1rem;
+    border-radius: 0.5rem;
 }

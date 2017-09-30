@@ -15,7 +15,7 @@
   }
   const CONSTANTS = {
     canvasWidth: 900,
-    canvasHeight: 954,
+    canvasHeight: 1000,
   }
 
   const acceptedFileTypes = ["image/jpeg", "image/png"],
@@ -44,77 +44,77 @@
     }),
     formation433 = {
       lf: {
-        top: 120,
+        top: 90,
         left: 240,
         shirtNumber: 11,
         name: "Obafemi Awolowo",
         path: "./assets/images/Awolowo.png"
       },
       cf: {
-        top: 75,
+        top: 45,
         left: (CONSTANTS.canvasWidth) / 2,
         shirtNumber: 9,
         name: "Nnamdi Azikwe",
         path: "./assets/images/Azikwe.png"
       },
       rf: {
-        top: 120,
+        top: 90,
         left: CONSTANTS.canvasWidth - 240,
         shirtNumber: 7,
         name: "Tafewa Balewa",
         path: "./assets/images/Balewa.png"
       },
       lm: {
-        top: (CONSTANTS.canvasHeight) / 4 + 50,
+        top: (CONSTANTS.canvasHeight) / 4 + 20,
         left: 290,
         shirtNumber: 6,
         name: "Odumegwu Ojukwu",
         path: "./assets/images/Ojukwu.png"
       },
       cm: {
-        top: (CONSTANTS.canvasHeight) / 4 + 150,
+        top: (CONSTANTS.canvasHeight) / 4 + 120,
         left: (CONSTANTS.canvasWidth) / 2,
-        shirtNumber: 31,
-        name: "Murtala Mohammed",
-        path: "./assets/images/Murtala.png"
+        shirtNumber: 15,
+        name: "Abu Ali",
+        path: "./assets/images/Ali.png"
       },
       rm: {
-        top: (CONSTANTS.canvasHeight) / 4 + 50,
+        top: (CONSTANTS.canvasHeight) / 4 + 20,
         left: CONSTANTS.canvasWidth - 290,
         shirtNumber: 22,
         name: "Dora Akunyili",
         path: "./assets/images/Akunyili.png"
       },
       lb: {
-        top: (CONSTANTS.canvasHeight) / 3 + 150,
+        top: (CONSTANTS.canvasHeight) / 3 + 120,
         left: 180,
         shirtNumber: 2,
         name: "Fela Kuti",
-        path: "./assets/images/Kuti.png"
+        path: "./assets/images/Kuti.png",
       },
       lcb: {
-        top: (CONSTANTS.canvasHeight) / 3 + 255,
+        top: (CONSTANTS.canvasHeight) / 3 + 225,
         left: (CONSTANTS.canvasWidth) / 3 + 50,
         shirtNumber: 4,
         name: "Gani Fawehinmi",
         path: "./assets/images/Fawehinmi.png"
       },
       rcb: {
-        top: (CONSTANTS.canvasHeight) / 3 + 255,
+        top: (CONSTANTS.canvasHeight) / 3 + 225,
         left: (CONSTANTS.canvasWidth) / 3 * 2 - 50,
         shirtNumber: 5,
         name: "Dr. Stella Adadevoh",
         path: "./assets/images/Adadevoh.png"
       },
       rb: {
-        top: (CONSTANTS.canvasHeight) / 3 + 150,
+        top: (CONSTANTS.canvasHeight) / 3 + 120,
         left: CONSTANTS.canvasWidth - 180,
         shirtNumber: 3,
         name: "Ken Saro Wiwa",
         path: "./assets/images/Wiwa.png"
       },
       gk: {
-        top: (CONSTANTS.canvasHeight) - 220,
+        top: (CONSTANTS.canvasHeight) - 255,
         left: (CONSTANTS.canvasWidth) / 2 + 10,
         shirtNumber: 1,
         name: "Herbert Macauly",
@@ -137,9 +137,9 @@
       sub3: {
         top: (CONSTANTS.canvasHeight) - 90,
         left: (CONSTANTS.canvasWidth) / 3 * 2 - 45,
-        shirtNumber: 15,
-        name: "Abu Ali",
-        path: "./assets/images/Ali.png"
+        shirtNumber: 31,
+        name: "Murtala Mohammed",
+        path: "./assets/images/Murtala.png"
       },
       sub4: {
         top: (CONSTANTS.canvasHeight) - 90,
@@ -305,15 +305,18 @@
             return;
           }
           if (groupObj !== e.target) {
-            // oTab.set("stroke", null);
-            // oPic.set("stroke", null);
+            let otPic = e.target._objects.find((ele) => ele.propName === "picture");
+            let otTab = e.target._objects.find((ele) => ele.propName === "tab");
+            otTab.set("stroke", null);
+            otPic.set("stroke", null);
             return;
           }
           if (canvas.isPlayerSelected) {
             if (canvas.selectedGroup === e.target) {
               canvas.isPlayerSelected = false;
-              oTab.set("stroke", null);
               let osPic = canvas.selectedGroup._objects.find((ele) => ele.propName === "picture");
+              let osTab = canvas.selectedGroup._objects.find((ele) => ele.propName === "tab");
+              osTab.set("stroke", null);
               osPic.set("stroke", null);
               return;
             }
@@ -347,15 +350,17 @@
             canvas.renderAll();
           } else {
             canvas.isPlayerSelected = true;
-            oTab.set("stroke", "white");
             canvas.selectedGroup = e.target;
-            let osPic = canvas.selectedGroup._objects.find((ele) => ele.propName === "picture");
-            osPic.set("stroke", "white");
+            let otPic = e.target._objects.find((ele) => ele.propName === "picture");
+            let otTab = e.target._objects.find((ele) => ele.propName === "tab");
+            otTab.set("stroke", "white");
+            otPic.set("stroke", "white");
           }
         })
         groupObj.scale(0.5)
           .set("left", pos.left)
           .set("top", pos.top);
+
         oTab.set("top", 120)
           .set("strokeWidth", 10)
           .set("originX", "center")
@@ -393,7 +398,7 @@
         oImg.set("hasBorders", false);
         oImg.set("selectable", false);
         oImg.set("evented", false);
-        oImg.set("top", CONSTANTS.canvasWidth - 70);
+        oImg.set("top", CONSTANTS.canvasWidth - 30);
         canvas.add(oImg);
         oImg.sendToBack();
         canvas.renderAll();
@@ -543,10 +548,12 @@
         $el.find('button').removeAttr('disabled');
       }
     };
+
   fabric.Textbox.prototype.insertNewline = (function (_super) {
     return function () {
     }
   })(fabric.Textbox.prototype.insertNewline);
+
   fabric.Textbox.prototype.initHiddenTextarea = (function (_super) {
     return function () {
       _super.call(this);
@@ -556,6 +563,7 @@
       $(this.hiddenTextarea).attr('spellcheck', false);
     }
   })(fabric.Textbox.prototype.initHiddenTextarea);
+
   fabric.Textbox.prototype.onInput = (function (_super) {
     return function (e) {
       while (this.text.length > this.hiddenTextarea.value.length) {
@@ -564,7 +572,9 @@
       _super.call(this, e);
     }
   })(fabric.Textbox.prototype.onInput);
+
   startUp(canvas);
+
   canvas.on('mouse:down', (e) => {
     canvas.forEachObject((obj) => {
       if (obj.type !== "image") {
@@ -572,6 +582,7 @@
       }
     });
   });
+
   $(document).ready(function () {
     $("a").on('click', function (event) {
       if (this.hash !== "") {
@@ -585,9 +596,11 @@
       }
     });
   });
+
   $fileInput.click(function () {
     this.value = "";
   });
+
   $fileInput.change(function () {
     $loading.css('z-index', '2');
     $loading.show();
