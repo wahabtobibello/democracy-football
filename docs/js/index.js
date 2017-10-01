@@ -47871,31 +47871,52 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
     },
     sub1: {
       top: CONSTANTS.canvasHeight - 90,
-      left: 130,
+      left: 90,
       shirtNumber: 14,
       name: "Chinua Achebe",
       path: "./assets/images/Achebe.png"
     },
     sub2: {
       top: CONSTANTS.canvasHeight - 90,
-      left: CONSTANTS.canvasWidth / 3 + 45,
+      left: CONSTANTS.canvasWidth / 3 - 30,
       shirtNumber: 23,
       name: "MKO Abiola",
       path: "./assets/images/Abiola.png"
     },
     sub3: {
       top: CONSTANTS.canvasHeight - 90,
-      left: CONSTANTS.canvasWidth / 3 * 2 - 45,
+      left: CONSTANTS.canvasWidth / 3 * 2 - 150,
       shirtNumber: 31,
       name: "Murtala Mohammed",
       path: "./assets/images/Murtala.png"
     },
     sub4: {
       top: CONSTANTS.canvasHeight - 90,
-      left: CONSTANTS.canvasWidth - 130,
+      left: CONSTANTS.canvasWidth - 270,
       shirtNumber: 20,
       name: "Ahmadu Bello",
       path: "./assets/images/Bello.png"
+    },
+    sub5: {
+      top: CONSTANTS.canvasHeight - 90,
+      left: CONSTANTS.canvasWidth - 80,
+      shirtNumber: 28,
+      name: "Mary Slessor",
+      path: "./assets/images/Slessor.png"
+    },
+    sub6: {
+      top: CONSTANTS.canvasHeight - 90,
+      left: CONSTANTS.canvasWidth - 160,
+      shirtNumber: 20,
+      name: "Bishop Ajayi Crowther",
+      path: "./assets/images/Crowther.png"
+    },
+    sub7: {
+      top: CONSTANTS.canvasHeight - 90,
+      left: CONSTANTS.canvasWidth - 130,
+      shirtNumber: 20,
+      name: "Muhammed Musa Yar-adua",
+      path: "./assets/images/Yar-adua.png"
     }
   },
       getAdjustedScale = function getAdjustedScale(noOfChars) {
@@ -48016,7 +48037,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
     var renderPlayer = function renderPlayer(oTab, oPic, pos, canvas) {
       var oShirtNo = new fabric.Text("" + pos.shirtNumber, {
         fontFamily: "Futura-Medium",
-        top: 123,
+        top: 143,
         left: -130,
         originX: "center",
         originY: "center",
@@ -48024,7 +48045,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
       });
       var oPlayerName = new fabric.Text(pos.name, {
         fontFamily: "Futura-Medium",
-        top: 123,
+        top: 143,
         left: 25,
         fontSize: 26,
         fill: "white",
@@ -48113,7 +48134,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
       });
       groupObj.scale(0.5).set("left", pos.left).set("top", pos.top).set("strokeWidth", 10).set("stroke", "white");
 
-      oTab.set("top", 120).set("strokeWidth", 12)
+      oTab.set("top", 140).set("strokeWidth", 12)
       // .set("stroke", "white")
       .set("originX", "center").set("originY", "center").set("propName", "tab");
 
@@ -48241,6 +48262,24 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
         canvas.renderAll();
       });
     });
+    fabric.Image.fromURL('./assets/images/button.png', function (oTab) {
+      fabric.Image.fromURL(formation433.sub5.path, function (oPic) {
+        canvas.add(renderPlayer(oTab, oPic, formation433.sub5, canvas));
+        canvas.renderAll();
+      });
+    });
+    // fabric.Image.fromURL('./assets/images/button.png', function (oTab) {
+    //   fabric.Image.fromURL(formation433.sub6.path, function (oPic) {
+    //     canvas.add(renderPlayer(oTab, oPic, formation433.sub6, canvas));
+    //     canvas.renderAll();
+    //   });
+    // });
+    // fabric.Image.fromURL('./assets/images/button.png', function (oTab) {
+    //   fabric.Image.fromURL(formation433.sub7.path, function (oPic) {
+    //     canvas.add(renderPlayer(oTab, oPic, formation433.sub7, canvas));
+    //     canvas.renderAll();
+    //   });
+    // });
   },
       filter = function filter(imageObj, index, prop, value) {
     if (value === undefined) {
