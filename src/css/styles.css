@@ -231,7 +231,6 @@ button {
     -webkit-transition-delay: 0s;
     transition-delay: 0s;
     width: 433px;
-    height: 75px;
 }
 
 #addPhotoOnly button,
@@ -316,7 +315,6 @@ body > textarea {
 
     #controls {
         width: 336px;
-        height: 40px
     }
 
     #view {
@@ -365,7 +363,6 @@ body > textarea {
 
     #controls {
         width: 328px;
-        height: 20px;
     }
 
     #view .canvas-container {
@@ -383,10 +380,10 @@ body > textarea {
     display: -webkit-flex;
     display: -ms-flexbox;
     display: flex;
-    -webkit-box-pack: end;
-    -webkit-justify-content: flex-end;
-    -ms-flex-pack: end;
-    justify-content: flex-end;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+    justify-content: center;
     font-size: 1rem;
 }
 
