@@ -12644,11 +12644,15 @@ html.iziModal-isAttached{
     }
 }
 * {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
     box-sizing: border-box;
 }
 
 .lucozade-red {
     color: #fff;
+    background: -webkit-gradient(linear, left top, left bottom, from(#479b30), to(#3C8129));
+    background: -webkit-linear-gradient(#479b30, #3C8129);
     background: linear-gradient(#479b30, #3C8129);
     border-color: #fff;
 }
@@ -12721,46 +12725,77 @@ button {
 .header {
     width: 100%;
     height: 100vh;
+    -webkit-background-size: cover;
     background-size: cover;
+    background: -webkit-radial-gradient(rgba(37, 161, 58, 1), rgba(1, 58, 10, 1));
     background: radial-gradient(rgba(37, 161, 58, 1), rgba(1, 58, 10, 1));
     position: relative;
 }
 
-#message {
+.top {
+    padding-top: 0.3em;
     position: absolute;
+    right: 0.3em;
+    width: 70%;
+}
+
+.top .title {
+    font-family: "Futura-Medium", sans-serif;
     color: white;
-    padding-top: 1.4rem;
-    font-size: 1rem;
-    text-align: center;
-    font-family: "Futura-CondensedExtraBold", sans-serif;
-    left: 0;
-    right: 0;
-    margin: auto;
+    text-align: right;
+    font-size: 1.1em;
 }
 
-#message span:not(#within) {
-    display: block;
+.top .title strong {
+    font-size: 1.1em;
 }
 
-.movie-title {
-    font-size: 1.1rem;
+.logo {
+    position: fixed;
+    left: 0.5em;
+    top: 0.3em;
+    z-index: 1000;
+    width: 120px;
+    height: -webkit-calc(120px / 3.1);
+    height: calc(120px / 3.1);
+    background-image: url("../assets/images/logo.png");
+    -webkit-background-size: contain;
+    background-size: contain;
 }
 
 @media (min-width: 768px) {
-    #message {
-        font-size: 1.4rem;
+    .top {
+        right: unset;
+        width: 100%;
     }
 
-    #message span:not(#within) {
-        display: inline;
+    .top .title {
+        font-family: "Futura-Medium", sans-serif;
+        color: white;
+        text-align: center;
+        font-size: 1.3em;
+        text-transform: uppercase;
     }
 
-    .movie-title {
-        font-size: 1.55rem;
+    .top .title strong {
+        font-size: 1.1em;
+    }
+
+    .logo {
+        position: fixed;
+        left: 0.5em;
+        top: 0.3em;
+        z-index: 1000;
+        width: 180px;
+        height: -webkit-calc(180px / 3.1);
+        height: calc(180px / 3.1);
+        background-image: url("../assets/images/logo.png");
+        -webkit-background-size: contain;
+        background-size: contain;
     }
 }
 
-.movie-title #within {
+.green {
     color: #7CD881;
 }
 
@@ -12810,7 +12845,6 @@ button {
     display: -webkit-flex;
     display: -webkit-box;
     display: -ms-flexbox;
-    display: -moz-box;
     display: flex;
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
@@ -12822,6 +12856,7 @@ button {
     -ms-flex-pack: center;
     justify-content: center;
     -webkit-align-content: center;
+    -ms-flex-line-pack: center;
     align-content: center;
     margin: auto;
 }
@@ -12850,6 +12885,7 @@ button {
 }
 
 #moreOptions button {
+    width: -webkit-calc(100% / 3.1);
     width: calc(100% / 3.1);
 }
 
@@ -12914,8 +12950,18 @@ body > textarea {
 }
 
 @media (max-width: 500px) and (min-width: 341px) {
+
+    .top {
+        width: 65%
+    }
+
+    .top .title {
+        font-size: 0.9em;
+    }
+
     #controls {
         width: 336px;
+        height: 40px
     }
 
     #view {
@@ -12938,6 +12984,20 @@ body > textarea {
 }
 
 @media (max-width: 340px) {
+    .logo {
+        width: 100px;
+        height: -webkit-calc(100px / 3.1);
+        height: calc(100px / 3.1);
+    }
+
+    .top {
+        width: 65%
+    }
+
+    .top .title {
+        font-size: 0.8em;
+    }
+
     #view,
     #loading {
         width: 310px;
@@ -12950,6 +13010,7 @@ body > textarea {
 
     #controls {
         width: 328px;
+        height: 20px;
     }
 
     #view .canvas-container {
@@ -12963,8 +13024,14 @@ body > textarea {
 }
 
 #share-modal .modal-inner {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
     display: flex;
-    justify-content: center;
+    -webkit-box-pack: end;
+    -webkit-justify-content: flex-end;
+    -ms-flex-pack: end;
+    justify-content: flex-end;
     font-size: 1rem;
 }
 
@@ -12974,14 +13041,13 @@ body > textarea {
 }
 
 #share-modal .fa {
-    -webkit-transition: transform 0.5s;
-    -moz-transition: transform 0.5s;
-    -ms-transition: transform 0.5s;
-    -o-transition: transform 0.5s;
+    -webkit-transition: -webkit-transform 0.5s;
     transition: transform 0.5s;
 }
 
 #share-modal .fa:hover {
+    -webkit-transform: scale(1.1, 1.1);
+    -ms-transform: scale(1.1, 1.1);
     transform: scale(1.1, 1.1);
 }
 
@@ -13027,9 +13093,12 @@ body > textarea {
     left: 0;
     width: 100%;
     height: 100%;
+    background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0.7)), to(rgba(0, 0, 0, 0.7)));
+    background-image: -webkit-linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7));
     background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7));
     background-repeat: no-repeat;
     background-position: top center;
+    -webkit-background-size: cover;
     background-size: cover;
     -webkit-transition: .5s;
     transition: .5s;

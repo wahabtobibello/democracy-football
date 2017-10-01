@@ -76,7 +76,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
       top: CONSTANTS.canvasHeight / 4 + 120,
       left: CONSTANTS.canvasWidth / 2,
       shirtNumber: 15,
-      name: "Abu Ali",
+      name: "Lt. Col. Abu Ali",
       path: "./assets/images/Ali.png"
     },
     rm: {

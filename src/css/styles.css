@@ -306,11 +306,11 @@ body > textarea {
 
 @media (max-width: 500px) and (min-width: 341px) {
 
-    .top{
-        width:65%
+    .top {
+        width: 65%
     }
 
-    .top .title{
+    .top .title {
         font-size: 0.9em;
     }
 
@@ -339,12 +339,18 @@ body > textarea {
 }
 
 @media (max-width: 340px) {
-    .top{
-        width:65%
+    .logo {
+        width: 100px;
+        height: -webkit-calc(100px / 3.1);
+        height: calc(100px / 3.1);
     }
 
-    .top .title{
-        font-size: 0.9em;
+    .top {
+        width: 65%
+    }
+
+    .top .title {
+        font-size: 0.8em;
     }
 
     #view,
@@ -359,6 +365,7 @@ body > textarea {
 
     #controls {
         width: 328px;
+        height: 20px;
     }
 
     #view .canvas-container {
