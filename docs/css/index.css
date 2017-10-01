@@ -12751,16 +12751,68 @@ button {
 }
 
 .logo {
+    background-repeat: no-repeat;
+    -webkit-background-size: contain;
+    background-size: contain;
+}
+
+.logo-ourgreenheroes {
     position: fixed;
     left: 0.5em;
     top: 0.3em;
     z-index: 1000;
+    background-image: url("../assets/images/logo.png");
     width: 120px;
     height: -webkit-calc(120px / 3.1);
     height: calc(120px / 3.1);
-    background-image: url("../assets/images/logo.png");
+}
+
+footer {
+    display: flex;
+    background: #e3e3e3;
+    font-family: "Futura-Medium";
+    font-size: 0.8em;
+    align-items: center;
+}
+@media (min-width: 768px) {
+ footer{
+     font-size: 1em;
+ }
+    .logo-footer{
+        height: 40px;
+    }
+    .logo-neukleos {
+        width: 44px;
+    }
+
+    .logo-imageandtime {
+        width: -webkit-calc(40px * 4.2);
+        width: calc(40px * 4.2);
+    }
+}
+
+footer p {
+    margin: 0.5em;
+    flex:1;
+}
+
+.logo-footer{
+    background-repeat: no-repeat;
     -webkit-background-size: contain;
     background-size: contain;
+    margin: 0 0.5em;
+    height: 25px;
+}
+
+.logo-neukleos {
+    background-image: url("../assets/images/neukleos-logo.png");
+    width: 27.5px;
+}
+
+.logo-imageandtime {
+    background-image: url("../assets/images/imageandtime-logo.png");
+    width: -webkit-calc(25px * 4.2);
+    width: calc(25px * 4.2);
 }
 
 @media (min-width: 768px) {
