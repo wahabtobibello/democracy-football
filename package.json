@@ -9,7 +9,7 @@
   "author": "Tobi Bello",
   "license": "MIT",
   "dependencies": {
-    "bootstrap": "next",
+    "bootstrap": "4.0.0",
     "fabric": "^1.7.19",
     "file-saver": "^1.3.3",
     "font-awesome": "^4.7.0",
